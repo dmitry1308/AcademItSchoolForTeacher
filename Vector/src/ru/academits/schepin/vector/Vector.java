@@ -7,7 +7,9 @@ public class Vector {
     private double[] vector;
 
     public Vector(double[] vector) {
-        this.vector = vector;
+        double[] array = new double[vector.length];
+        System.arraycopy(vector, 0, array, 0, vector.length);
+        this.vector = array;
     }
 
 
@@ -21,7 +23,9 @@ public class Vector {
 
     // Создание  копии вектора:
     public Vector(Vector v) {
-        this.vector = v.vector;
+        double[] array = new double[v.getSize()];
+        System.arraycopy(v.vector, 0, array, 0, v.getSize());
+        this.vector = array;
     }
 
 
