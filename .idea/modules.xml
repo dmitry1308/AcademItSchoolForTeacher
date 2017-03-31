@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AcademItSchoolForTeacher.iml" filepath="$PROJECT_DIR$/AcademItSchoolForTeacher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CFT/CFT.iml" filepath="$PROJECT_DIR$/CFT/CFT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Range/Range.iml" filepath="$PROJECT_DIR$/Range/Range.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RangeDifficult/RangeDifficult.iml" filepath="$PROJECT_DIR$/RangeDifficult/RangeDifficult.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Shapes/Shapes.iml" filepath="$PROJECT_DIR$/Shapes/Shapes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Shapes2/Shapes2.iml" filepath="$PROJECT_DIR$/Shapes2/Shapes2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vector/Vector.iml" filepath="$PROJECT_DIR$/Vector/Vector.iml" />
+    </modules>
+  </component>
+</project>
