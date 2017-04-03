@@ -3,10 +3,10 @@ package ru.academits.schepin.vector;
 import java.util.Arrays;
 
 
-class Vector {
+public class Vector {
     private double[] vector;
 
-    Vector(double[] vector) {
+    public Vector(double[] vector) {
         double[] array = new double[vector.length];
         System.arraycopy(vector, 0, array, 0, vector.length);
         this.vector = array;
@@ -22,7 +22,7 @@ class Vector {
     }
 
     // Создание  копии вектора:
-    Vector(Vector v) {
+    public Vector(Vector v) {
         double[] array = new double[v.getSize()];
         System.arraycopy(v.vector, 0, array, 0, v.getSize());
         this.vector = array;
@@ -45,7 +45,7 @@ class Vector {
 
 
     // Получение размерности вектора:
-    int getSize() {
+    public int getSize() {
         return vector.length;
     }
 
@@ -62,7 +62,7 @@ class Vector {
     //todo Операции с векторами:
 
     //Прибавление к вектору другого вектора:
-    Vector addition(Vector b) {
+    public Vector addition(Vector b) {
         if (this.getSize() >= b.getSize()) {
             this.sum(b);
             return this;
@@ -83,14 +83,14 @@ class Vector {
     }
 
     //Сложение векторов:
-    static Vector sum(Vector a, Vector b) {
+    public static Vector sum(Vector a, Vector b) {
         Vector copyOfA = new Vector(a);
         return copyOfA.addition(b);
     }
 
 
     //Вычитание из вектора другого вектора:
-     Vector subtraction(Vector b) {
+    public Vector subtraction(Vector b) {
         if (this.getSize() >= b.getSize()) {
             this.sub(b);
             return this;
@@ -111,14 +111,14 @@ class Vector {
     }
 
     //Вычитание векторов:
-    static Vector sub(Vector a, Vector b) {
+    public static Vector sub(Vector a, Vector b) {
         Vector copyOfA = new Vector(a);
         return copyOfA.subtraction(b);
     }
 
 
     // Умножение на скаляр:
-    Vector scale(double k) {
+    public Vector scale(double k) {
 
         for (int i = 0; i < this.vector.length; i++) {
             this.vector[i] *= k;
@@ -127,33 +127,33 @@ class Vector {
     }
 
     //Разворот вектора:
-    Vector invert() {
+   public Vector invert() {
         this.scale(-1);
         return this;
     }
 
     // Получение длины вектора:
-    double norma() {
+    public double norma() {
         double sum = 0;
-        for (double aVector : vector) {
-            sum += Math.pow(aVector, 2);
+        for (double element : vector) {
+            sum += Math.pow(element, 2);
         }
         return Math.sqrt(sum);
     }
 
 
     //Получение компоненты вектора по нидексу:
-    double getByIndex(int index) {
+    public double getByIndex(int index) {
         return this.vector[index];
     }
 
     //Установка компоненты вектора по нидексу:
-    void setByIndex(int index, double value) {
+    public void setByIndex(int index, double value) {
         this.vector[index] = value;
     }
 
     //Скалярное произведение векторов:
-    static double scalarMultiply(Vector a, Vector b) {
+    public static double scalarMultiply(Vector a, Vector b) {
         double result = 0;
         int n = Math.min(a.getSize(), b.getSize());
 
