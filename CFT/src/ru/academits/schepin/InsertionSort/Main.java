@@ -15,23 +15,20 @@ import static ru.academits.schepin.InsertionSort.manipulations.RecordInFile.reco
 
 public class Main {
     public static void main(String[] args) {
-        //todo Проверка кол-ва переданных аргументо:
         if (args.length != 4) {
             System.out.println("Недостаточно переданных параметров");
             return;
         }
 
-        //todo Содержание аргументов:
         String sourcePath = args[0];
         String outputPath = args[1];
         String ascendingOrDecrease = args[2];
         String dataType = args[3];
 
-        //todo Абиривиатуры типов данных:
         String numbers = "-i";
         String letters = "-s";
 
-        //todo Проверка переданного аргумента(цифры или строки):
+
         boolean isNumbers;
         if (dataType.equals(numbers)) {
             isNumbers = true;
@@ -42,11 +39,9 @@ public class Main {
         }
 
 
-        //todo Абиривиатуры возростания и убывания:
         String ascending = "-a";
         String decrease = "-d";
 
-        //todo Проверка переданного аргумента(возростание или убывание):
         boolean isAscending;
         if (ascendingOrDecrease.equals(ascending)) {
             isAscending = true;
@@ -56,17 +51,15 @@ public class Main {
             throw new IllegalArgumentException("Введен неправильный аргумент");
         }
 
-
         try {
-            //todo Чтение файла из цифр:
+
             if (isNumbers) {
-                ArrayList <Integer> listFromNumbers = ReadFileFromNumbers.readFile(sourcePath);
+                ArrayList<Integer> listFromNumbers = ReadFileFromNumbers.readFile(sourcePath);
                 if (listFromNumbers == null) {
                     throw new WrongTransferredFileException("Ошибка из-за переданного файла");
                 }
                 System.out.println("Прочтенный файл: " + listFromNumbers);
 
-                //todo Сортировка файла из цифр:
                 if (isAscending) {
                     Sort.sort(listFromNumbers, new IntegerComparator());
                     System.out.println("Отсортированный файл: " + listFromNumbers);
@@ -75,19 +68,16 @@ public class Main {
                     System.out.println("Отсортированный файл: " + listFromNumbers);
                 }
 
-                //todo Запись в файл:
                 recordInFile(listFromNumbers, outputPath);
 
-
             } else {
-                //todo Чтение файла из букв:
+
                 ArrayList<String> listFromStrings = ReadFileFromStrings.readFile(sourcePath);
                 if (listFromStrings == null) {
                     throw new WrongTransferredFileException("Ошибка из-за переданного файла");
                 }
                 System.out.println("Прочтенный файл: " + listFromStrings);
 
-                //todo Сортировка файла из букв:
                 if (isAscending) {
                     Sort.sort(listFromStrings, new StringComparator());
                     System.out.println("Отсортированный файл: " + listFromStrings);
@@ -96,7 +86,6 @@ public class Main {
                     System.out.println("Отсортированный файл: " + listFromStrings);
                 }
 
-                //todo Запись в файл:
                 recordInFile(listFromStrings, outputPath);
             }
         } catch (InputMismatchException e) {
