@@ -9,7 +9,7 @@ import ru.academits.schepin.InsertionSort.manipulations.Sort;
 
 import java.util.ArrayList;
 
-import static ru.academits.schepin.InsertionSort.manipulations.RecordInFile.recordInFile;
+import static ru.academits.schepin.InsertionSort.manipulations.RecordToFile.recordInFile;
 
 
 public class Main {
@@ -55,19 +55,15 @@ public class Main {
 
             if (isNumbers) {
                 ArrayList<Integer> listFromNumbers = ReadFileFromNumbers.readFile(sourcePath);
-                if (listFromNumbers == null || listFromNumbers.size() == 0) {
+                if (listFromNumbers == null) {
                     throw new WrongTransferredFileException("Ошибка из-за переданного файла");
                 }
-                System.out.println("Прочтенный файл: " + listFromNumbers);
 
                 if (isAscending) {
                     Sort.sort(listFromNumbers, new IntegerComparator());
-                    System.out.println("Отсортированный файл: " + listFromNumbers);
                 } else {
                     Sort.sort(listFromNumbers, new IntegerComparator().reversed());
-                    System.out.println("Отсортированный файл: " + listFromNumbers);
                 }
-
                 recordInFile(listFromNumbers, outputPath);
 
             } else {
@@ -76,16 +72,12 @@ public class Main {
                 if (listFromStrings == null) {
                     throw new WrongTransferredFileException("Ошибка из-за переданного файла");
                 }
-                System.out.println("Прочтенный файл: " + listFromStrings);
 
                 if (isAscending) {
                     Sort.sort(listFromStrings, new StringComparator());
-                    System.out.println("Отсортированный файл: " + listFromStrings);
                 } else {
                     Sort.sort(listFromStrings, new StringComparator().reversed());
-                    System.out.println("Отсортированный файл: " + listFromStrings);
                 }
-
                 recordInFile(listFromStrings, outputPath);
             }
         } catch (IllegalArgumentException e) {
