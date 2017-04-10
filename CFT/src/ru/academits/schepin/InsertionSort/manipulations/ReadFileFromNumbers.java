@@ -3,13 +3,11 @@ package ru.academits.schepin.InsertionSort.manipulations;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class ReadFileFromNumbers {
-    public static ArrayList<Integer> readFile(String sourcePath) {
+    public static ArrayList<Integer> readFile(String sourcePath){
 
         try (Scanner scanner = new Scanner(new FileInputStream(sourcePath))) {
 
@@ -19,9 +17,7 @@ public class ReadFileFromNumbers {
             }
             return listOfNumbers;
         } catch (FileNotFoundException e) {
-            System.out.println("Не найден файл: " + sourcePath);
-        } catch (InputMismatchException e) {
-            System.out.println("Файл содержит недопустимую информацию(поменяйте содержимое файла)!!!");
+            System.out.println("Не найден путь к файлу: " + sourcePath);
         }
         return null;
     }

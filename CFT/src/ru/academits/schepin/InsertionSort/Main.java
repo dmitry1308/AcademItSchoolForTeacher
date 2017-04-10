@@ -8,7 +8,6 @@ import ru.academits.schepin.InsertionSort.manipulations.ReadFileFromStrings;
 import ru.academits.schepin.InsertionSort.manipulations.Sort;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 
 import static ru.academits.schepin.InsertionSort.manipulations.RecordInFile.recordInFile;
 
@@ -28,34 +27,35 @@ public class Main {
         String numbers = "-i";
         String letters = "-s";
 
-
-        boolean isNumbers;
-        if (dataType.equals(numbers)) {
-            isNumbers = true;
-        } else if (dataType.equals(letters)) {
-            isNumbers = false;
-        } else {
-            throw new IllegalArgumentException("Введен неправильный аргумент");
-        }
-
-
         String ascending = "-a";
         String decrease = "-d";
 
-        boolean isAscending;
-        if (ascendingOrDecrease.equals(ascending)) {
-            isAscending = true;
-        } else if (ascendingOrDecrease.equals(decrease)) {
-            isAscending = false;
-        } else {
-            throw new IllegalArgumentException("Введен неправильный аргумент");
-        }
-
         try {
+
+            boolean isNumbers;
+            if (dataType.equals(numbers)) {
+                isNumbers = true;
+            } else if (dataType.equals(letters)) {
+                isNumbers = false;
+            } else {
+                throw new IllegalArgumentException("Введен неправильный тип данных(аргумент №4)." + System.lineSeparator() +
+                        "Должен быть -i или -s.");
+            }
+
+            boolean isAscending;
+            if (ascendingOrDecrease.equals(ascending)) {
+                isAscending = true;
+            } else if (ascendingOrDecrease.equals(decrease)) {
+                isAscending = false;
+            } else {
+                throw new IllegalArgumentException("Введен неправильный аргумент возростания-убывания(аргумент №3)." + System.lineSeparator() +
+                        "Должен быть -a  или -d.");
+            }
+
 
             if (isNumbers) {
                 ArrayList<Integer> listFromNumbers = ReadFileFromNumbers.readFile(sourcePath);
-                if (listFromNumbers == null) {
+                if (listFromNumbers == null || listFromNumbers.size() == 0) {
                     throw new WrongTransferredFileException("Ошибка из-за переданного файла");
                 }
                 System.out.println("Прочтенный файл: " + listFromNumbers);
@@ -88,7 +88,9 @@ public class Main {
 
                 recordInFile(listFromStrings, outputPath);
             }
-        } catch (InputMismatchException e) {
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка: " + e);
+        } catch (WrongTransferredFileException e) {
             System.out.println("Файл содержит недопустимую информацию(поменяйте содержимое файла)!!!");
         }
     }
