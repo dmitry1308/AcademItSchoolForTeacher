@@ -5,11 +5,13 @@
       <module fileurl="file://$PROJECT_DIR$/AcademItSchoolForTeacher.iml" filepath="$PROJECT_DIR$/AcademItSchoolForTeacher.iml" />
       <module fileurl="file://$PROJECT_DIR$/ArrayList/ArrayList.iml" filepath="$PROJECT_DIR$/ArrayList/ArrayList.iml" />
       <module fileurl="file://$PROJECT_DIR$/CFT/CFT.iml" filepath="$PROJECT_DIR$/CFT/CFT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CFT(OOP)/CFT(OOP).iml" filepath="$PROJECT_DIR$/CFT(OOP)/CFT(OOP).iml" />
       <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Matrix/Matrix.iml" filepath="$PROJECT_DIR$/Matrix/Matrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyArrayList/MyArrayList.iml" filepath="$PROJECT_DIR$/MyArrayList/MyArrayList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Range/Range.iml" filepath="$PROJECT_DIR$/Range/Range.iml" />
       <module fileurl="file://$PROJECT_DIR$/RangeDifficult/RangeDifficult.iml" filepath="$PROJECT_DIR$/RangeDifficult/RangeDifficult.iml" />
       <module fileurl="file://$PROJECT_DIR$/Shapes/Shapes.iml" filepath="$PROJECT_DIR$/Shapes/Shapes.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Shapes2/Shapes2.iml" filepath="$PROJECT_DIR$/Shapes2/Shapes2.iml" />
       <module fileurl="file://$PROJECT_DIR$/SinglyLinkedList/SinglyLinkedList.iml" filepath="$PROJECT_DIR$/SinglyLinkedList/SinglyLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Vector/Vector.iml" filepath="$PROJECT_DIR$/Vector/Vector.iml" />
     </modules>
