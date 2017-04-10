@@ -17,7 +17,7 @@ public class Main {
         if (args.length != 4) {
             System.out.println("Недостаточно переданных параметров!" + System.lineSeparator() +
                     "Help!" + System.lineSeparator() +
-                    " - колличество параметров должно быть: 4;" + System.lineSeparator() +
+                    " - колличество параметров должно быть:  4;" + System.lineSeparator() +
                     " - параметр №1: путь к обрабатываемому файлу;" + System.lineSeparator() +
                     " - параметр №2: путь для записи данных в файл;" + System.lineSeparator() +
                     " - параметр №3 (сортировка): возростание(-a) или убывание (-d);" + System.lineSeparator() +
