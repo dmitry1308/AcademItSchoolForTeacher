@@ -61,7 +61,7 @@ public class Matrix {
 
     public Vector getRowCopy(int index) {
         if (index < 0 || index >= data.length) {
-            throw new IllegalArgumentException("Индекс строки некорректен!");
+            throw new IllegalArgumentException("Индекс строки  некорректен!");
         }
 
         Vector newRow = new Vector(data[index]);

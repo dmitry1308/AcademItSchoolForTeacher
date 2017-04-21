@@ -158,7 +158,7 @@ public class Main {
         System.out.println("\n" +"Транспонирование матрицы g:");
         System.out.println("g= " + g);
         g.transpose();
-        System.out.println("транспонированная матрица g  = " + g);
+        System.out.println("транспонированная  матрица g  = " + g);
 
         System.out.println("\n" +"Задание вектора строки матрицы g по индексу 1 вектором z4:");
         System.out.println("g= " + g);
