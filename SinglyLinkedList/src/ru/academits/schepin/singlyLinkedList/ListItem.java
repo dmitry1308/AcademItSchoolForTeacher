@@ -1,35 +1,39 @@
 package ru.academits.schepin.singlyLinkedList;
 
-public class ListItem {
-    int data;
-    ListItem next;
+public class ListItem<T> {
+    T data;
+    ListItem<T> next;
 
     public ListItem() {
     }
 
-    public ListItem(int data) {
-        this.setData(data);
-    }
-
-    public ListItem(int data, ListItem next) {
-        this.setData(data);
-        this.setNext(next);
-    }
-
-
-    public int getData() {
-        return data;
-    }
-
-    public void setData(int data) {
+    public ListItem(T data) {
         this.data = data;
     }
 
-    public ListItem getNext() {
+    public ListItem(T data, ListItem<T> next) {
+        this.data = data;
+        this.next = next;
+    }
+
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public ListItem<T> getNext() {
         return next;
     }
 
-    public void setNext(ListItem next) {
+    public void setNext(ListItem<T> next) {
         this.next = next;
+    }
+
+    public String toString(){
+        return "Узел "+ data;
     }
 }
