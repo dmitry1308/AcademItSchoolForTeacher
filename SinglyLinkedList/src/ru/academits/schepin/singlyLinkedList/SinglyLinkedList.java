@@ -13,12 +13,18 @@ public class SinglyLinkedList<T> {
     }
 
     public void printList() {
-        ListItem<T> t = head;       //получаем ссылку на первый элемент
-        while (t != null)           //пока элемент существуе
-        {
-            System.out.print(t.data + " "); //печатаем его данные
-            t = t.next;                     //и переключаемся на следующий
+        //получаем ссылку на первый элемент
+        ListItem<T> t = head;
+        StringBuilder s = new StringBuilder();
+        s.append("Список: ");
+        while (t != null) {
+            s.append(t.data);
+            s.append(" ");
+
+            t = t.next;
         }
+        System.out.println(s.toString());
+
     }
 
     public void addFront(T data) {      //добавить спереди
@@ -36,7 +42,7 @@ public class SinglyLinkedList<T> {
     }
 
     public void addForIndex(int index, T data) {
-        if (index < 0 && index > size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Некорректный индекс");
         }
 
@@ -52,6 +58,10 @@ public class SinglyLinkedList<T> {
 
     //Получение узла по индексу:
     public ListItem<T> getData(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Некорректный индекс");
+        }
+
         ListItem<T> p = head;
         int count = 0;
         while (p != null) {
@@ -66,6 +76,9 @@ public class SinglyLinkedList<T> {
 
     //Вставка узла по индексу:
     public ListItem<T> addData(int index, T data) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Некорректный индекс");
+        }
         ListItem<T> p = head;
         int count = 0;
         while (p != null) {
@@ -81,5 +94,155 @@ public class SinglyLinkedList<T> {
         return null;
     }
 
+    public T getValue(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Некорректный индекс");
+        }
+
+        ListItem<T> p = head;
+        int count = 0;
+        while (p != null) {
+            if (count == index) {
+                return p.data;
+            }
+            p = p.next;
+            count++;
+        }
+        return null;
+    }
+
+    public void setValue(int index, T data) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Некорректный индекс");
+        }
+
+        ListItem<T> p = head;
+        int count = 0;
+        while (p != null) {
+            if (count == index) {
+                p.data = data;
+            }
+            p = p.next;
+            count++;
+        }
+    }
+
+    public T changeValue(int index, T data) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Некорректный индекс");
+        }
+
+        ListItem<T> p = head;
+        int count = 0;
+        while (p != null) {
+            if (count == index) {
+                T temp = p.data;
+                p.data = data;
+                return temp;
+            }
+            p = p.next;
+            count++;
+        }
+        return null;
+    }
+
+    public T remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Некорректный индекс");
+        }
+
+        ListItem<T> p = head;
+        int count = 0;
+        while (p != null) {
+            if (index - 1 == count) {
+                ListItem<T> q;
+                q = p.next;
+                p.next = p.next.next;
+                size--;
+                return q.data;
+            }
+            p = p.next;
+            count++;
+        }
+        return null;
+    }
+
+    //Не работает
+//    public void remove(T data) {
+//        ListItem<T> p = head;
+//        while (p != null) {
+//            if (p.next.data.equals(data)) {
+//                p.next = p.next.next;
+//
+//            }
+//            p = p.next;
+//        }
+//       size--;
+//    }
+
+    public T removeHead() {
+        T temp = head.data;
+        ListItem<T> p = head;
+        head = p.next;
+        size--;
+
+        return temp;
+    }
+
+    //надо доделывать
+    public void reversal() {
+        ListItem<T> p = head;
+        ListItem<T> q = head.next;
+        ListItem<T> r = q.next;
+        p.next = null;
+        q.next = p;
+
+    }
+
+    public void removeAfterIndex(ListItem<T> data) {
+        ListItem<T> p = head;
+        while (p != null) {
+            if (data.equals(p)) {
+                p.next = p.next.next;
+            }
+            p = p.next;
+        }
+    }
+
+    public void addAfterIndex(T data, T newData) {
+        ListItem<T> p = head;
+        ListItem<T> q = new ListItem<>(newData);
+        while (p != null) {
+            if (p.data.equals(data)) {
+                q.next = p.next;
+                p.next = q;
+                size++;
+            }
+            p = p.next;
+        }
+    }
+
+//    public SinglyLinkedList<T> copy() {
+//        SinglyLinkedList<T> copyOfList = new SinglyLinkedList<T>();
+//        ListItem<T> p = head;
+//        while(p!=null){
+//            copyOfList.add(p.data);
+//        }
+//        return SinglyLinkedList<T>;
+//    }
+//
+//    private void add(T data) {
+//
+//        ListItem<T> a = new ListItem<>(data);
+//
+//        if (head == null) {
+//            head = a;
+//
+//        } else {
+//            head.next = a;
+//        }
+//        size++;
+//    }
 
 }
+

@@ -33,7 +33,7 @@ public class ListItem<T> {
         this.next = next;
     }
 
-    public String toString(){
-        return "Узел "+ data;
+    public String toString() {
+        return "Узел " + data;
     }
 }
