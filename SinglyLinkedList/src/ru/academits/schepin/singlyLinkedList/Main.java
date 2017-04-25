@@ -1,22 +1,54 @@
 package ru.academits.schepin.singlyLinkedList;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Main {
     public static void main(String[] args) {
         SinglyLinkedList<Integer> p = new SinglyLinkedList<>();
-        for (int i = 0; i < 5; i++) {
-            p.addFront(ThreadLocalRandom.current().nextInt(20));
-        }
+//        for (int i = 0; i < 5; i++) {
+//            p.addFront(ThreadLocalRandom.current().nextInt(20));
+//        }
 
         //вставка элемента в начало:
         p.addFront(10);
         p.addFront(5);
         p.addFront(7);
+        p.addFront(4);
+        p.addFront(12);
+        p.addFront(1);
 
         p.printList();
-
         System.out.println(" ");
+
+        System.out.println("Копия списка:");
+        SinglyLinkedList<Integer> q = p.copy();
+        q.printList();
+        System.out.println();
+
+        System.out.println("Вставка узла после указанного узла:");
+        p.addAfterData(10, 56);
+        p.printList();
+        System.out.println();
+
+        System.out.println("Удаление узла по значению:");
+        Integer x = 1;
+        p.remove(x);
+        p.printList();
+        System.out.println();
+
+        System.out.println("Вставка элемента по индексу 2 элемента 6:");
+
+        p.addData(2, null);
+        p.printList();
+        System.out.println();
+
+        System.out.println("Удаление узла после указанного узла:");
+        p.removeAfterData(4);
+        p.printList();
+        System.out.println();
+
+        System.out.println("Вставка узла после указанного узла:");
+        p.addAfterData(12, 56);
+        p.printList();
+        System.out.println();
 
         System.out.println("Получение первого узла:");
         ListItem head = p.getHead();
@@ -53,35 +85,22 @@ public class Main {
         p.printList();
         System.out.println();
 
-        System.out.println("Удаление узла по значению:");
-        Integer x = 5;
-        p.remove(x);
-        p.printList();
-        System.out.println();
-
         System.out.println("Удаление первого элемента(выдает значение элемента):");
         System.out.println(p.removeHead());
         p.printList();
         System.out.println();
 
-        System.out.println("Вставка узла после указанного узла:");
+        System.out.println("Разворот списка за указанное время:");
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.printList();
 
-        p.addAfterIndex(26, 56);
-        p.printList();
-        System.out.println();
-
-        System.out.println("Удаление узла после указанного узла:");
-        p.removeAfterIndex(p.getHead());
-        p.printList();
-        System.out.println();
-
-        //Разворот списка за указанное время:
-        p.reversal();
-        p.printList();
-
-        //Копирование списка:
-        //todo
-
+        list.reversal();
+        list.printList();
 
     }
 }
