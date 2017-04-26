@@ -8,15 +8,19 @@ public class Main {
 //        }
 
         //вставка элемента в начало:
-        p.addFront(10);
-        p.addFront(5);
+        p.addFront(null);
+        p.addFront(4);
         p.addFront(7);
         p.addFront(4);
-        p.addFront(12);
+        p.addFront(5);
         p.addFront(1);
 
         p.printList();
         System.out.println(" ");
+
+        System.out.println("Получение узла по индексу 5:");
+        ListItem node = p.getData(5);
+        System.out.println(node + "\n");
 
         System.out.println("Копия списка:");
         SinglyLinkedList<Integer> q = p.copy();
@@ -24,29 +28,28 @@ public class Main {
         System.out.println();
 
         System.out.println("Вставка узла после указанного узла:");
-        p.addAfterData(10, 56);
+        p.addAfterData(5, 56);
         p.printList();
         System.out.println();
 
-        System.out.println("Удаление узла по значению:");
+        System.out.println("Удаление узла по значению(1):");
         Integer x = 1;
         p.remove(x);
         p.printList();
         System.out.println();
 
-        System.out.println("Вставка элемента по индексу 2 элемента 6:");
-
-        p.addData(2, null);
+        System.out.println("Вставка по индексу 2 элемента 456:");
+        p.addData(2, 456);
         p.printList();
         System.out.println();
 
-        System.out.println("Удаление узла после указанного узла:");
+        System.out.println("Удаление узла после  узла 4:");
         p.removeAfterData(4);
         p.printList();
         System.out.println();
 
-        System.out.println("Вставка узла после указанного узла:");
-        p.addAfterData(12, 56);
+        System.out.println("Вставка узла 21 после 7:");
+        p.addAfterData(7, 21);
         p.printList();
         System.out.println();
 
@@ -59,26 +62,21 @@ public class Main {
         p.printList();
         System.out.println();
 
-        System.out.println("Получение узла по индексу 2:");
-        ListItem node = p.getData(2);
-        System.out.println(node + "\n");
 
         //Получение размера списка:
         System.out.println("p(size) = " + p.size());
         System.out.println();
 
         System.out.println("Получение значения по  индексу 2:");
-        int value = p.getValue(2);
+        Integer value = p.getValue(2);
         System.out.println(value + "\n");
 
 
-        System.out.println("Изменение значения по индексу 3 на 26:");
-        p.setValue(3, 26);
+        System.out.println("Изменение значения по индексу 5 на значение 2 (выдает старое значение):");
+        p.printList();
+        System.out.println(p.changeValue(5, 2));
         p.printList();
         System.out.println();
-
-        System.out.println("Изменение значения по указан. индексу(выдает старое значение):");
-        System.out.println(p.changeValue(5, 2) + "\n");
 
         System.out.println("Удаление значения по  индексу 2(выдает старое значение):");
         System.out.println("Удаленное значение по индексу 2: " + p.remove(2));
@@ -92,15 +90,18 @@ public class Main {
 
         System.out.println("Разворот списка за указанное время:");
         SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
+        for (int i = 0; i < 5; i++) {
+            list.addFront(i);
+        }
+        list.addFront(null);
         list.printList();
 
-        list.reversal();
+        list.reverse();
         list.printList();
+
+
+        SinglyLinkedList<Integer> list1 = new SinglyLinkedList<>();
+        list1.remove((Integer) 655);
 
     }
 }
