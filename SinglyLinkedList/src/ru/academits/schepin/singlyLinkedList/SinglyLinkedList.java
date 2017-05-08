@@ -102,13 +102,13 @@ public class SinglyLinkedList<T> {
         } else {
 
             for (ListItem<T> p = head; p != null; p = p.next) {
-                if (Objects.equals(p.next,p.next.next)) {
+                if (head.data.equals(data)) {
                     head = p.next;
                     size--;
                     break;
                 }
 
-                if ( Objects.equals(p.next,p.next.next)) {
+                if ( p.next.equals(p.next.next)) {
                     p.next = p.next.next;
                     size--;
                     break;

@@ -10,15 +10,16 @@ public class Main {
         //вставка элемента в начало:
         p.addFront(41);
         p.addFront(4);
+        p.addFront(7);
         p.addFront(null);
-        p.addFront(4);
         p.addFront(5);
         p.addFront(1);
+
+       // p.remove(null);
 
         p.printList();
         System.out.println(" ");
 
-        p.remove(null);
 
         System.out.println("Получение узла по индексу 5:");
         ListItem node = p.getData(5);
@@ -103,6 +104,7 @@ public class Main {
 
 
         SinglyLinkedList<Integer> list1 = new SinglyLinkedList<>();
+
 
 
     }
