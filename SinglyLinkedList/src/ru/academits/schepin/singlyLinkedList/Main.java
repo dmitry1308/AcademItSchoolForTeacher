@@ -8,15 +8,17 @@ public class Main {
 //        }
 
         //вставка элемента в начало:
-        p.addFront(null);
+        p.addFront(41);
         p.addFront(4);
-        p.addFront(7);
+        p.addFront(null);
         p.addFront(4);
         p.addFront(5);
         p.addFront(1);
 
         p.printList();
         System.out.println(" ");
+
+        p.remove(null);
 
         System.out.println("Получение узла по индексу 5:");
         ListItem node = p.getData(5);
@@ -74,7 +76,7 @@ public class Main {
 
         System.out.println("Изменение значения по индексу 5 на значение 2 (выдает старое значение):");
         p.printList();
-        System.out.println(p.changeValue(5, 2));
+        System.out.println(p.setValue(5, 2));
         p.printList();
         System.out.println();
 
@@ -101,7 +103,7 @@ public class Main {
 
 
         SinglyLinkedList<Integer> list1 = new SinglyLinkedList<>();
-        list1.remove((Integer) 655);
+
 
     }
 }

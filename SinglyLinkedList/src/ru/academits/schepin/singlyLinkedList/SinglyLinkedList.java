@@ -37,10 +37,6 @@ public class SinglyLinkedList<T> {
 
 
     public ListItem<T> getData(int index) {
-        if (head == null) {
-            throw new UnsupportedOperationException("Список пустой");
-        }
-
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Некорректный индекс");
         }
@@ -56,11 +52,7 @@ public class SinglyLinkedList<T> {
 
     //Вставка узла по индексу:
     public void addData(int index, T data) {
-        if (head == null) {
-            throw new UnsupportedOperationException("Список пустой");
-        }
-
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Некорректный индекс");
         }
 
@@ -72,10 +64,6 @@ public class SinglyLinkedList<T> {
     }
 
     public T getValue(int index) {
-        if (head == null) {
-            throw new UnsupportedOperationException("Список пустой");
-        }
-
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Некорректный индекс");
         }
@@ -83,11 +71,7 @@ public class SinglyLinkedList<T> {
         return p.data;
     }
 
-    public T changeValue(int index, T data) {
-        if (head == null) {
-            throw new UnsupportedOperationException("Список пустой");
-        }
-
+    public T setValue(int index, T data) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Некорректный индекс");
         }
@@ -99,10 +83,6 @@ public class SinglyLinkedList<T> {
     }
 
     public T remove(int index) {
-        if (head == null) {
-            throw new UnsupportedOperationException("Список пустой");
-        }
-
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Некорректный индекс");
         }
@@ -117,18 +97,18 @@ public class SinglyLinkedList<T> {
 
 
     public void remove(T data) {
-        if (head == null) {
-            System.out.println("Нет элемента " + data + " т.к. список пустой");
+        if (size == 0) {
+            throw new IllegalArgumentException("Нет значения " + data + " т.к список пустой");
         } else {
 
             for (ListItem<T> p = head; p != null; p = p.next) {
-                if (head.data.equals(data)) {
+                if (Objects.equals(p.next,p.next.next)) {
                     head = p.next;
                     size--;
                     break;
                 }
 
-                if (p.next.data.equals(data)) {
+                if ( Objects.equals(p.next,p.next.next)) {
                     p.next = p.next.next;
                     size--;
                     break;
@@ -138,13 +118,15 @@ public class SinglyLinkedList<T> {
     }
 
     public T removeHead() {
+        if (size == 0) {
+            throw new IllegalArgumentException("Нет такого значения т.к список пустой");
+        }
         T temp = head.data;
         head = head.next;
         size--;
 
         return temp;
     }
-
 
     public void reverse() {
         ListItem<T> current = head;
