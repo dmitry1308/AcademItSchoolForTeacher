@@ -11,15 +11,12 @@ public class Main {
         p.addFront(41);
         p.addFront(4);
         p.addFront(7);
-        p.addFront(null);
+        p.addFront(6);
         p.addFront(5);
         p.addFront(1);
-
-       // p.remove(null);
-
         p.printList();
-        System.out.println(" ");
 
+         p.remove(null);
 
         System.out.println("Получение узла по индексу 5:");
         ListItem node = p.getData(5);
@@ -31,12 +28,13 @@ public class Main {
         System.out.println();
 
         System.out.println("Вставка узла после указанного узла:");
-        p.addAfterData(5, 56);
+        ListItem<Integer> d = new ListItem<>(6);
+        p.addAfterData(p.getData(5),d);
         p.printList();
         System.out.println();
 
-        System.out.println("Удаление узла по значению(1):");
-        Integer x = 1;
+        System.out.println("Удаление узла по значению(41):");
+        Integer x = 41;
         p.remove(x);
         p.printList();
         System.out.println();
@@ -47,12 +45,8 @@ public class Main {
         System.out.println();
 
         System.out.println("Удаление узла после  узла 4:");
-        p.removeAfterData(4);
-        p.printList();
-        System.out.println();
-
-        System.out.println("Вставка узла 21 после 7:");
-        p.addAfterData(7, 21);
+        ListItem<Integer> f = p.getData(1);
+        p.removeAfterData(f);
         p.printList();
         System.out.println();
 
@@ -104,7 +98,6 @@ public class Main {
 
 
         SinglyLinkedList<Integer> list1 = new SinglyLinkedList<>();
-
 
 
     }

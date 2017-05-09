@@ -37,9 +37,8 @@ public class SinglyLinkedList<T> {
 
 
     public ListItem<T> getData(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Некорректный индекс");
-        }
+        isOutSideRange(index);
+
         ListItem<T> p = head;
         for (int i = 0; i < size; i++) {
             if (i == index) {
@@ -50,11 +49,8 @@ public class SinglyLinkedList<T> {
         return null;
     }
 
-    //Вставка узла по индексу:
     public void addData(int index, T data) {
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException("Некорректный индекс");
-        }
+        isOutSideRange(index);
 
         ListItem<T> p = getData(index - 1);
         ListItem<T> q = new ListItem<>(data);
@@ -64,17 +60,21 @@ public class SinglyLinkedList<T> {
     }
 
     public T getValue(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Некорректный индекс");
-        }
+        isOutSideRange(index);
+
         ListItem<T> p = getData(index);
         return p.data;
     }
 
-    public T setValue(int index, T data) {
+    private void isOutSideRange(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Некорректный индекс");
         }
+    }
+
+
+    public T setValue(int index, T data) {
+        isOutSideRange(index);
 
         ListItem<T> p = getData(index);
         T temp = p.data;
@@ -82,39 +82,41 @@ public class SinglyLinkedList<T> {
         return temp;
     }
 
-    public T remove(int index) {
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Некорректный индекс");
-        }
 
-        ListItem<T> p = getData(index - 1);
-        ListItem<T> q;
-        q = p.next;
-        p.next = p.next.next;
-        size--;
-        return q.data;
+    public T remove(int index) {
+        isOutSideRange(index);
+
+        ListItem<T> p = head;
+        if (index == 0) {
+            head = p.next;
+            return head.data;
+        } else {
+            p = getData(index - 1);
+            ListItem<T> q;
+            q = p.next;
+            p.next = p.next.next;
+            size--;
+            return q.data;
+        }
     }
 
+    public boolean remove(T data) {
+        ListItem<T> p = head;
 
-    public void remove(T data) {
-        if (size == 0) {
-            throw new IllegalArgumentException("Нет значения " + data + " т.к список пустой");
-        } else {
+        if (head.data.equals(data)) {
+            head = p.next;
+            size--;
+            return true;
+        }
 
-            for (ListItem<T> p = head; p != null; p = p.next) {
-                if (head.data.equals(data)) {
-                    head = p.next;
-                    size--;
-                    break;
-                }
-
-                if ( p.next.equals(p.next.next)) {
-                    p.next = p.next.next;
-                    size--;
-                    break;
-                }
+        for (p = head; p.next != null; p = p.next) {
+            if (Objects.equals(p.next.data, data)) {
+                p.next = p.next.next;
+                size--;
+                return true;
             }
         }
+        return false;
     }
 
     public T removeHead() {
@@ -141,22 +143,22 @@ public class SinglyLinkedList<T> {
         head = prev;
     }
 
-    public void removeAfterData(T data) {
+
+    public void removeAfterData(ListItem<T> node) {
         for (ListItem<T> p = head; p != null; p = p.next) {
-            if (data.equals(p.data)) {
+            if (node.equals(p.next)) {
                 p.next = p.next.next;
             }
         }
     }
 
-    public void addAfterData(T data, T newData) {
-        ListItem<T> q = new ListItem<>(newData);
 
+    public void addAfterData(ListItem<T> node, ListItem<T> newNode) {
         for (ListItem<T> p = head; p != null; p = p.next) {
 
-            if (Objects.equals(p.data, data)) {
-                q.next = p.next;
-                p.next = q;
+            if (node.equals(p)) {
+                newNode.next = p.next;
+                p.next = newNode;
                 size++;
             }
         }
