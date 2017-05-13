@@ -25,12 +25,10 @@ public class SinglyLinkedList<T> {
     }
 
     public void addFront(T data) {
-        ListItem<T> p = new ListItem<>(data, head);
-
         if (head == null) {
-            head = p;
+            head = new ListItem<>(data, null);
         } else {
-            head = p;
+            head = new ListItem<>(data, head);
         }
         size++;
     }
@@ -50,7 +48,9 @@ public class SinglyLinkedList<T> {
     }
 
     public void addData(int index, T data) {
-        isOutSideRange(index);
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Некорректный индекс");
+        }
 
         ListItem<T> p = getData(index - 1);
         ListItem<T> q = new ListItem<>(data);
@@ -82,18 +82,17 @@ public class SinglyLinkedList<T> {
         return temp;
     }
 
-
     public T remove(int index) {
         isOutSideRange(index);
 
         ListItem<T> p = head;
         if (index == 0) {
-            head = p.next;
+            removeHead();
+            size--;
             return head.data;
         } else {
             p = getData(index - 1);
-            ListItem<T> q;
-            q = p.next;
+            ListItem<T> q = p.next;
             p.next = p.next.next;
             size--;
             return q.data;
@@ -101,6 +100,10 @@ public class SinglyLinkedList<T> {
     }
 
     public boolean remove(T data) {
+        if (head == null) {
+            return false;
+        }
+
         ListItem<T> p = head;
 
         if (head.data.equals(data)) {
@@ -143,25 +146,16 @@ public class SinglyLinkedList<T> {
         head = prev;
     }
 
-
     public void removeAfterData(ListItem<T> node) {
-        for (ListItem<T> p = head; p != null; p = p.next) {
-            if (node.equals(p.next)) {
-                p.next = p.next.next;
-            }
-        }
+        node.next = node.next.next;
+        size--;
     }
 
-
-    public void addAfterData(ListItem<T> node, ListItem<T> newNode) {
-        for (ListItem<T> p = head; p != null; p = p.next) {
-
-            if (node.equals(p)) {
-                newNode.next = p.next;
-                p.next = newNode;
-                size++;
-            }
-        }
+    public void addAfterNode(ListItem<T> node, T data) {
+        ListItem<T> q = new ListItem<>(data);
+        q.next = node.next;
+        node.next = q;
+        size++;
     }
 
     public SinglyLinkedList<T> copy() {

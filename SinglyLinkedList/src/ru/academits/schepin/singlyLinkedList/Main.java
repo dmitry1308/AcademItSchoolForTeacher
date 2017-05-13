@@ -8,7 +8,7 @@ public class Main {
 //        }
 
         //вставка элемента в начало:
-        p.addFront(41);
+        p.addFront(null);
         p.addFront(4);
         p.addFront(7);
         p.addFront(6);
@@ -17,9 +17,10 @@ public class Main {
         p.printList();
 
          p.remove(null);
+        p.printList();
 
-        System.out.println("Получение узла по индексу 5:");
-        ListItem node = p.getData(5);
+        System.out.println("Получение узла по индексу 3:");
+        ListItem node = p.getData(3);
         System.out.println(node + "\n");
 
         System.out.println("Копия списка:");
@@ -28,13 +29,12 @@ public class Main {
         System.out.println();
 
         System.out.println("Вставка узла после указанного узла:");
-        ListItem<Integer> d = new ListItem<>(6);
-        p.addAfterData(p.getData(5),d);
+        p.addAfterNode(p.getData(0),128);
         p.printList();
         System.out.println();
 
-        System.out.println("Удаление узла по значению(41):");
-        Integer x = 41;
+        System.out.println("Удаление узла по значению(128):");
+        Integer x = 128;
         p.remove(x);
         p.printList();
         System.out.println();
@@ -44,7 +44,7 @@ public class Main {
         p.printList();
         System.out.println();
 
-        System.out.println("Удаление узла после  узла 4:");
+        System.out.println("Удаление узла после  узла 1:");
         ListItem<Integer> f = p.getData(1);
         p.removeAfterData(f);
         p.printList();
