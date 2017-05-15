@@ -25,11 +25,7 @@ public class SinglyLinkedList<T> {
     }
 
     public void addFront(T data) {
-        if (head == null) {
-            head = new ListItem<>(data, null);
-        } else {
-            head = new ListItem<>(data, head);
-        }
+        head = new ListItem<>(data, head);
         size++;
     }
 
@@ -82,14 +78,16 @@ public class SinglyLinkedList<T> {
         return temp;
     }
 
+
     public T remove(int index) {
         isOutSideRange(index);
 
-        ListItem<T> p = head;
+        ListItem<T> p;
         if (index == 0) {
+            T element = head.data;
             removeHead();
             size--;
-            return head.data;
+            return element;
         } else {
             p = getData(index - 1);
             ListItem<T> q = p.next;
@@ -99,8 +97,9 @@ public class SinglyLinkedList<T> {
         }
     }
 
+    //- может падать с null
     public boolean remove(T data) {
-        if (head == null) {
+        if (head.data == null) {
             return false;
         }
 

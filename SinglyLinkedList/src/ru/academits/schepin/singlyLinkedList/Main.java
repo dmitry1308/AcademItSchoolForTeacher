@@ -21,7 +21,8 @@ public class Main {
 
         System.out.println("Получение узла по индексу 3:");
         ListItem node = p.getData(3);
-        System.out.println(node + "\n");
+        System.out.println(node);
+        System.out.println();
 
         System.out.println("Копия списка:");
         SinglyLinkedList<Integer> q = p.copy();
@@ -52,7 +53,8 @@ public class Main {
 
         System.out.println("Получение первого узла:");
         ListItem head = p.getHead();
-        System.out.println(head + "\n");
+        System.out.println(head);
+        System.out.println();
 
         System.out.println("Вставка элемента по индексу 2 элемента 6:");
         p.addData(2, 6);
@@ -66,7 +68,8 @@ public class Main {
 
         System.out.println("Получение значения по  индексу 2:");
         Integer value = p.getValue(2);
-        System.out.println(value + "\n");
+        System.out.println(value);
+        System.out.println();
 
 
         System.out.println("Изменение значения по индексу 5 на значение 2 (выдает старое значение):");
