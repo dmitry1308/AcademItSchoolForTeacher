@@ -26,12 +26,19 @@ public class HashTable<T> implements Collection<T> {
     }
 
     private int getHashCode(Object o) {
+        if (o == null) {
+            return -1;
+        }
+
         return Math.abs(o.hashCode() % arrayOfLists.length);
     }
 
     @Override
     public boolean add(T t) {
         int indexOfArray = getHashCode(t);
+        if (indexOfArray == -1) {
+            return false;
+        }
         ArrayList<T> neededList = arrayOfLists[indexOfArray];
 
         if (neededList == null) {
@@ -51,6 +58,9 @@ public class HashTable<T> implements Collection<T> {
     @Override
     public boolean remove(Object o) {
         int indexOfArray = getHashCode(o);
+        if (indexOfArray == -1) {
+            return false;
+        }
         ArrayList<T> neededList = arrayOfLists[indexOfArray];
 
         if (neededList == null) {
@@ -93,6 +103,10 @@ public class HashTable<T> implements Collection<T> {
     @Override
     public boolean contains(Object o) {
         int indexOfArray = getHashCode(o);
+        if (indexOfArray == -1) {
+            return false;
+        }
+
         ArrayList<T> neededList = arrayOfLists[indexOfArray];
 
         if (neededList != null) {
@@ -262,8 +276,28 @@ public class HashTable<T> implements Collection<T> {
 
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
-        return null;
-    }
+    public <T1> T1[] toArray(T1[] array) {
+        int countingOfIdenticalElements = 0;
+        for (int i = 0; i < array.length; i++) {
+            int indexOfArray = getHashCode(array[i]);
+            if (arrayOfLists[indexOfArray] != null) {
+                arrayOfLists[indexOfArray].contains(array[i]);
 
+                T1 temp = array[countingOfIdenticalElements];
+                array[countingOfIdenticalElements] = array[i];
+                array[i] = temp;
+                countingOfIdenticalElements++;
+
+                continue;
+            }
+            array[i] = null;
+        }
+        return array;
+    }
 }
+
+
+
+
+
+

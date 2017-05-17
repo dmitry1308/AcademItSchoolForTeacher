@@ -56,7 +56,7 @@ public class Main {
         System.out.println(head);
         System.out.println();
 
-        System.out.println("Вставка элемента по индексу 2 элемента 6:");
+        System.out.println("Вставка  элемента по индексу 2 элемента 6:");
         p.addData(2, 6);
         p.printList();
         System.out.println();

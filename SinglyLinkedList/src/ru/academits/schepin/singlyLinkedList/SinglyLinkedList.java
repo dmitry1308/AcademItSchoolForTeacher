@@ -97,7 +97,7 @@ public class SinglyLinkedList<T> {
         }
     }
 
-    //- может падать с null
+
     public boolean remove(T data) {
         if (head.data == null) {
             return false;
