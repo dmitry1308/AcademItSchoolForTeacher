@@ -2,6 +2,7 @@ package ru.academits.schepin.hashtable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -90,5 +91,21 @@ public class Main {
         }
 
         hashTable4.add(null);
+        System.out.println();
+
+
+
+        System.out.println("Пройтись Итератором");
+        HashTable<Integer> hashTable5 = new HashTable<>(11);
+        hashTable5.add(0);
+        hashTable5.add(4);
+        hashTable5.add(3);
+        hashTable5.add(5);
+        hashTable5.add(10);
+
+        for (Iterator<Integer> i = hashTable5.iterator(); i.hasNext(); ) {
+            Integer number = i.next();
+            System.out.println(number);
+        }
     }
 }

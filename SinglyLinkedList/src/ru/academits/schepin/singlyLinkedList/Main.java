@@ -16,7 +16,7 @@ public class Main {
         p.addFront(1);
         p.printList();
 
-         p.remove(null);
+        p.remove(null);
         p.printList();
 
         System.out.println("Получение узла по индексу 3:");
@@ -30,7 +30,7 @@ public class Main {
         System.out.println();
 
         System.out.println("Вставка узла после указанного узла:");
-        p.addAfterNode(p.getData(0),128);
+        p.addAfterNode(p.getData(0), 128);
         p.printList();
         System.out.println();
 
@@ -101,7 +101,20 @@ public class Main {
 
 
         SinglyLinkedList<Integer> list1 = new SinglyLinkedList<>();
+        list1.addFront(null);
+        list1.addFront(null);
+        list1.addFront(null);
+        list1.addFront(null);
+        list1.addFront(10);
+        list1.printList();
 
+        Integer e = null;
+        list1.remove(e);
+
+        list1.printList();
+
+        int size = list1.size();
+        System.out.println(size);
 
     }
 }

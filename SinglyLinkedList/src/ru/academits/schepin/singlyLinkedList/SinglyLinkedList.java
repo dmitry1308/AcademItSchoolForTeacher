@@ -15,13 +15,18 @@ public class SinglyLinkedList<T> {
     }
 
     public void printList() {
-        StringBuilder s = new StringBuilder();
-        s.append("Список: ");
-        for (ListItem<T> t = head; t != null; t = t.next) {
-            s.append(t.data);
-            s.append(" ");
+        if (size == 0) {
+            System.out.println("Список пустой");
+        } else {
+
+            StringBuilder s = new StringBuilder();
+            s.append("Список: ");
+            for (ListItem<T> t = head; t != null; t = t.next) {
+                s.append(t.data);
+                s.append(" ");
+            }
+            System.out.println(s.toString());
         }
-        System.out.println(s.toString());
     }
 
     public void addFront(T data) {
@@ -86,7 +91,6 @@ public class SinglyLinkedList<T> {
         if (index == 0) {
             T element = head.data;
             removeHead();
-            size--;
             return element;
         } else {
             p = getData(index - 1);
@@ -99,19 +103,17 @@ public class SinglyLinkedList<T> {
 
 
     public boolean remove(T data) {
-        if (head.data == null) {
+        if (size == 0) {
             return false;
         }
 
-        ListItem<T> p = head;
 
-        if (head.data.equals(data)) {
-            head = p.next;
-            size--;
+        if (Objects.equals(head.data, data)) {
+            removeHead();
             return true;
         }
 
-        for (p = head; p.next != null; p = p.next) {
+        for (ListItem<T> p = head; p.next != null; p = p.next) {
             if (Objects.equals(p.next.data, data)) {
                 p.next = p.next.next;
                 size--;

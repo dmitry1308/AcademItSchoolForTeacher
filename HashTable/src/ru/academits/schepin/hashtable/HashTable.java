@@ -12,10 +12,12 @@ public class HashTable<T> implements Collection<T> {
 
 
     public HashTable() {
+        //noinspection unchecked
         arrayOfLists = new ArrayList[DEFAULT_CAPACITY];
     }
 
     public HashTable(int capacity) {
+        //noinspection unchecked
         arrayOfLists = new ArrayList[capacity];
     }
 
@@ -25,17 +27,17 @@ public class HashTable<T> implements Collection<T> {
         return innerSize;
     }
 
-    private int getHashCode(Object o) {
+    private int hashCode(Object o) {
         if (o == null) {
             return -1;
         }
 
-        return Math.abs(o.hashCode() % arrayOfLists.length);
+        return Math.abs(37*(o.hashCode()) % arrayOfLists.length);
     }
 
     @Override
     public boolean add(T t) {
-        int indexOfArray = getHashCode(t);
+        int indexOfArray = hashCode(t);
         if (indexOfArray == -1) {
             return false;
         }
@@ -45,9 +47,7 @@ public class HashTable<T> implements Collection<T> {
             ArrayList<T> list = new ArrayList<>(5);
             arrayOfLists[indexOfArray] = list;
         } else {
-            if (neededList.contains(t)) {
-                return false;
-            }
+            return !neededList.contains(t);
         }
         arrayOfLists[indexOfArray].add(t);
         innerSize++;
@@ -57,7 +57,7 @@ public class HashTable<T> implements Collection<T> {
 
     @Override
     public boolean remove(Object o) {
-        int indexOfArray = getHashCode(o);
+        int indexOfArray = hashCode(o);
         if (indexOfArray == -1) {
             return false;
         }
@@ -67,9 +67,8 @@ public class HashTable<T> implements Collection<T> {
             return false;
         } else {
             if (neededList.contains(o)) {
-                neededList.remove(o);
                 innerSize--;
-                return true;
+                return neededList.remove(o);
             }
         }
         return false;
@@ -102,7 +101,7 @@ public class HashTable<T> implements Collection<T> {
 
     @Override
     public boolean contains(Object o) {
-        int indexOfArray = getHashCode(o);
+        int indexOfArray = hashCode(o);
         if (indexOfArray == -1) {
             return false;
         }
@@ -110,8 +109,7 @@ public class HashTable<T> implements Collection<T> {
         ArrayList<T> neededList = arrayOfLists[indexOfArray];
 
         if (neededList != null) {
-            arrayOfLists[indexOfArray].contains(o);
-            return true;
+            return arrayOfLists[indexOfArray].contains(o);
         }
         return false;
     }
@@ -122,7 +120,7 @@ public class HashTable<T> implements Collection<T> {
         T[] array = (T[]) c.toArray(new Object[c.size()]);
         int count = 0;
         for (T element : array) {
-            int indexOfArray = getHashCode(element);
+            int indexOfArray = hashCode(element);
 
             ArrayList<T> neededList = arrayOfLists[indexOfArray];
             if (neededList.contains(element)) {
@@ -135,9 +133,9 @@ public class HashTable<T> implements Collection<T> {
 
     @Override
     public void clear() {
-        for (int i = 0; i < arrayOfLists.length; i++) {
-            if (arrayOfLists[i] != null) {
-                arrayOfLists[i].clear();
+        for (ArrayList<T> arrayOfList : arrayOfLists) {
+            if (arrayOfList != null) {
+                arrayOfList.clear();
             }
         }
         innerSize = 0;
@@ -172,10 +170,11 @@ public class HashTable<T> implements Collection<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
+
         T[] array = (T[]) c.toArray(new Object[c.size()]);
 
         for (T element : array) {
-            int indexOfArray = getHashCode(element);
+            int indexOfArray = hashCode(element);
 
             if (arrayOfLists[indexOfArray] == null) {
                 ArrayList<T> list = new ArrayList<>(5);
@@ -203,24 +202,25 @@ public class HashTable<T> implements Collection<T> {
             private int total = 0;
 
             private int indexOfArray = 0;
-            private int indexOfList = 0;
+
 
             @Override
             public boolean hasNext() {
-                return total < innerSize - 1;
+                return total < innerSize;
             }
 
             @Override
             public T next() {
-                if (indexOfList < arrayOfLists[indexOfArray].size() - 1) {
-                    total++;
-                    indexOfList++;
-                    return arrayOfLists[indexOfArray].get(indexOfList);
+                if (arrayOfLists[indexOfArray] != null) {
+                    if (0 < arrayOfLists[indexOfArray].size()) {
+                        total++;
+                        return arrayOfLists[indexOfArray++].get(0);
+                    }
                 } else {
                     for (int i = indexOfArray + 1; i < arrayOfLists.length; i++) {
                         if (arrayOfLists[i] != null && arrayOfLists[i].size() > 0) {
                             indexOfArray = i;
-                            indexOfList = 0;
+                            indexOfArray++;
                             total++;
                             return arrayOfLists[i].get(0);
                         }
@@ -254,32 +254,31 @@ public class HashTable<T> implements Collection<T> {
     }
 
 
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        T[] array = (T[]) c.toArray(new Object[c.size()]);
-
-        for (T element : array) {
-            int indexOfArray = getHashCode(element);
-            if (arrayOfLists[indexOfArray] == null) {
-                return false;
-            }
-
-            if (arrayOfLists[indexOfArray].contains(element)) {
-                continue;
-            }
-            return false;
-
-
-        }
-        return true;
-    }
-
-
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
     @Override
     public <T1> T1[] toArray(T1[] array) {
         int countingOfIdenticalElements = 0;
         for (int i = 0; i < array.length; i++) {
-            int indexOfArray = getHashCode(array[i]);
+            int indexOfArray = hashCode(array[i]);
             if (arrayOfLists[indexOfArray] != null) {
                 arrayOfLists[indexOfArray].contains(array[i]);
 
@@ -294,6 +293,27 @@ public class HashTable<T> implements Collection<T> {
         }
         return array;
     }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        T[] array = (T[]) c.toArray(new Object[c.size()]);
+
+        for (T element : array) {
+            int indexOfArray = hashCode(element);
+            if (arrayOfLists[indexOfArray] == null) {
+                return false;
+            }
+
+            if (arrayOfLists[indexOfArray].contains(element)) {
+                continue;
+            }
+            return false;
+
+
+        }
+        return true;
+    }
+
 }
 
 
